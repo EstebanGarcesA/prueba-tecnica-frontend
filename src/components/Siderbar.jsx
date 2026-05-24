@@ -25,11 +25,9 @@ function Siderbar() {
       </div>
 
       <nav className="flex flex-1 flex-col gap-2 px-3 py-4 text-sm">
-        <Link to="board/" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
-          Tablero
+        <Link to="inventario/" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
+          Inventario
         </Link>
-        <Link to="offers/" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Ofertas</Link>
-        <Link to="candidates/" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Postulantes</Link>
 
         <button
           onClick={logout}
