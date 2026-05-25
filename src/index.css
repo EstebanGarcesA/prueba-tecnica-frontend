@@ -5,4 +5,36 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(9, 13, 26) 90%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efectos de luces difusas corporativas (naranja y rojo) en el fondo */
+.form-login-container::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  top: -10%;
+  right: -5%;
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.form-login-container::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+  bottom: -15%;
+  left: -5%;
+  filter: blur(100px);
+  z-index: 1;
+  pointer-events: none;
 }
