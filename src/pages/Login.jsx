@@ -71,7 +71,7 @@ const Login = () => {
       redirectAlert(
         "Bienvenido al sistema",
         "Será redireccionado al dashboard",
-        "/inventory",
+        "/dashboard",
         "success",
       );
       return;

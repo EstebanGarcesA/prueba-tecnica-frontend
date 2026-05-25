@@ -2,7 +2,7 @@ import { redirectAlert } from "../helpers/alerts"
 import { getLocalStorage, removeLocalStorage } from "../helpers/local-storage"
 import { Link } from "react-router-dom"
 
-function Siderbar() {
+function Sidebar() {
   let user = JSON.parse(getLocalStorage("user"))
   let initials = user.fullName.split(" ").map((item) => item[0]).join("")
   function logout() {
@@ -25,7 +25,10 @@ function Siderbar() {
       </div>
 
       <nav className="flex flex-1 flex-col gap-2 px-3 py-4 text-sm">
-        <Link to="inventario/" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
+        <Link to="" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
+          Tablero
+        </Link>
+        <Link to="inventory/" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
           Inventario
         </Link>
 
@@ -42,4 +45,4 @@ function Siderbar() {
   )
 }
 
-export default Siderbar
+export default Sidebar

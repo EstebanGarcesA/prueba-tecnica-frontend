@@ -1,7 +1,10 @@
 import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Board from "../pages/Board";
+import Dashboard from "../pages/Dashboard";
 import Inventory from "../pages/Inventory";
+import ProtectedRoute from "../pages/ProtectedRoute";
 
 export let routerApp = [
   {
@@ -17,7 +20,17 @@ export let routerApp = [
     element: <Register />,
   },
   {
-    path: "/inventory",
-    element: <Inventory />,
-  }
+    path: "/dashboard/",
+    element: <ProtectedRoute componente={<Dashboard />} />,
+    children: [
+      {
+        path: "board/",
+        element: <Board />,
+      },
+      {
+        path: "inventory/",
+        element: <Inventory />,
+      }
+    ],
+  },
 ]

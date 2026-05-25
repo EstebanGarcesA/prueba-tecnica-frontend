@@ -1,10 +1,10 @@
-import Siderbar from "./components/Siderbar";
+import Siderbar from "./components/Sidebar";
 
 function App() {
   return (
     <div>
 
-      <Siderbar/>
+
 
     </div>
   )
