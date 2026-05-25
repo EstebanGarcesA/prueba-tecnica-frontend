@@ -1,7 +1,7 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { end_points } from "../services/api";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
+import { generalAlert } from "../helpers/alerts";
 
 function EditProducts() {
   const { id } = useParams();
@@ -51,23 +51,21 @@ function EditProducts() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        Swal.fire({
-          icon: "success",
-          title: "Producto actualizado",
-          text: "El producto se ha actualizado correctamente.",
-          timer: 2000,
-          showConfirmButton: false,
-        }).then(() => {
+        generalAlert(
+          "Producto actualizado",
+          "El producto se ha actualizado correctamente.",
+          "success"
+        ).then(() => {
           navigate("/dashboard/inventory/");
         });
       })
       .catch((error) => {
         console.error("Error al actualizar producto:", error);
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Hubo un problema al actualizar el producto.",
-        });
+        generalAlert(
+          "Error",
+          "Hubo un problema al actualizar el producto.",
+          "error"
+        );
       });
   }
 
