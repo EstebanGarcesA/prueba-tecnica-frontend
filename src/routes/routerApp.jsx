@@ -4,6 +4,8 @@ import Register from "../pages/Register";
 import Board from "../pages/Board";
 import Dashboard from "../pages/Dashboard";
 import Inventory from "../pages/Inventory";
+import CreateProducts from "../pages/createProducts";
+import EditProducts from "../pages/EditProducts";
 import ProtectedRoute from "../pages/ProtectedRoute";
 
 export let routerApp = [
@@ -30,7 +32,15 @@ export let routerApp = [
       {
         path: "inventory/",
         element: <Inventory />,
-      }
+      },
+      {
+        path: "create-offer/",
+        element: <CreateProducts />,
+      },
+      {
+        path: "edit-offer/:id/",
+        element: <EditProducts />,
+      },
     ],
   },
 ]
