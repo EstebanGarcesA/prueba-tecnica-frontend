@@ -53,6 +53,7 @@ function ProductImage({ nombre, imagen }) {
 
 function Inventory() {
   const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("Todas");
 
   function getProducts() {
     fetch(end_points.productos)
@@ -95,6 +96,16 @@ function Inventory() {
     );
   }
 
+  const categories = [
+    "Todas",
+    ...new Set(products.map((p) => p.categoria).filter(Boolean)),
+  ];
+
+  const filteredProducts =
+    selectedCategory === "Todas"
+      ? products
+      : products.filter((p) => p.categoria === selectedCategory);
+
   return (
     <section className="mt-6">
       <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -112,13 +123,32 @@ function Inventory() {
         </Link>
       </header>
 
+      {products.length > 0 && (
+  <div className="mt-4 flex flex-wrap gap-2">
+    {categories.map((cat) => (
+      <button
+        key={cat}
+        type="button"
+        onClick={() => setSelectedCategory(cat)}
+        className={`rounded-full px-4 py-1.5 text-xs font-semibold transition border-2 ${
+          selectedCategory === cat
+            ? "bg-orange-500 border-orange-500 text-white shadow-sm"
+            : "border-slate-300 text-slate-600 hover:border-orange-300 hover:text-orange-600"
+        }`}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+)}
+
       {products.length <= 0 ? (
         <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
           No hay productos disponibles
         </div>
       ) : (
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((item) => (
+          {filteredProducts.map((item) => (
             <article
               key={item.id}
               className="flex flex-col overflow-hidden rounded-2xl border-2 border-slate-300 bg-white shadow-md ring-1 ring-slate-200/80 transition hover:border-slate-400 hover:shadow-lg"
