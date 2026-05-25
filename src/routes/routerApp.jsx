@@ -4,7 +4,7 @@ import Register from "../pages/Register";
 import Board from "../pages/Board";
 import Dashboard from "../pages/Dashboard";
 import Inventory from "../pages/Inventory";
-import CreateProducts from "../pages/createProducts";
+import CreateProductss from "../pages/CreateProductss";
 import EditProducts from "../pages/EditProducts";
 import ProtectedRoute from "../pages/ProtectedRoute";
 import { Navigate } from "react-router-dom";
@@ -40,7 +40,7 @@ export let routerApp = [
       },
       {
         path: "create-offer/",
-        element: <CreateProducts />,
+        element: <CreateProductss />,
       },
       {
         path: "edit-offer/:id/",

@@ -14,7 +14,7 @@ function getMinId(products) {
   return maxId + 1;
 }
 
-function CreateProducts() {
+function CreateProductss() {
   const [products, setProducts] = useState([]);
   const [minId, setMinId] = useState(1);
   const [nextId, setNextId] = useState("1");
@@ -212,4 +212,4 @@ function CreateProducts() {
   );
 }
 
-export default CreateProducts;
+export default CreateProductss;
