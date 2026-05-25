@@ -13,7 +13,7 @@ const Dashboard = () => {
                   Tablero de control
                 </p>
                 <p className="mt-1 text-sm text-slate-600">
-                  Usuarios, ofertas y postulantes
+                  Gestion y analitica de productos
                 </p>
               </div>
               
