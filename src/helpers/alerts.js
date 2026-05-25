@@ -21,6 +21,29 @@ export function redirectAlert(title, message, url, icon) {
         }
     })
 }
-export function generalAlert() {
+export function generalAlert(title, message, icon) {
+    Swal.fire({
+        title,
+        text: message,
+        icon,
+        timer: 1500,
+        showConfirmButton: false,
+    });
+}
 
+export function confirmAlert(title, message, icon, confirmCallback) {
+    Swal.fire({
+        title,
+        text: message,
+        icon,
+        showCancelButton: true,
+        confirmButtonColor: "#1d4ed8",
+        cancelButtonColor: "#ef4444",
+        confirmButtonText: "Sí, confirmar",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            confirmCallback();
+        }
+    });
 }

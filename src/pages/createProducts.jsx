@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import { generalAlert, redirectAlert } from "../helpers/alerts";
 import { end_points } from "../services/api";
 
 function getMinId(products) {
@@ -42,21 +42,21 @@ function CreateProducts() {
     const id = Number(data.id);
 
     if (Number.isNaN(id) || id < minId) {
-      Swal.fire({
-        icon: "error",
-        title: "ID no válido",
-        text: `El ID debe ser ${minId} o mayor (el ID más alto actual es ${minId - 1}).`,
-      });
+      generalAlert(
+        "ID no válido",
+        `El ID debe ser ${minId} o mayor (el ID más alto actual es ${minId - 1}).`,
+        "error"
+      );
       return;
     }
 
     const idExists = products.some((item) => String(item.id) === String(data.id));
     if (idExists) {
-      Swal.fire({
-        icon: "error",
-        title: "ID duplicado",
-        text: `Ya existe un producto con el ID ${data.id}.`,
-      });
+      generalAlert(
+        "ID duplicado",
+        `Ya existe un producto con el ID ${data.id}.`,
+        "error"
+      );
       return;
     }
 
@@ -74,9 +74,21 @@ function CreateProducts() {
     })
       .then((response) => response.json())
       .then(() => {
-        window.location.href = "/dashboard/inventory/";
+        redirectAlert(
+          "Producto creado",
+          "El producto se ha registrado exitosamente. Será redirigido al inventario.",
+          "/dashboard/inventory/",
+          "success"
+        );
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error(error);
+        generalAlert(
+          "Error",
+          "Hubo un problema al intentar crear el producto.",
+          "error"
+        );
+      });
   }
 
   return (
