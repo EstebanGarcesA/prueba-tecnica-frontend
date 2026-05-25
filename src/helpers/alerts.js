@@ -22,7 +22,7 @@ export function redirectAlert(title, message, url, icon) {
     })
 }
 export function generalAlert(title, message, icon) {
-    Swal.fire({
+    return Swal.fire({
         title,
         text: message,
         icon,
