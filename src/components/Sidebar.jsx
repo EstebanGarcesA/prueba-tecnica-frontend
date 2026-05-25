@@ -3,11 +3,15 @@ import { getLocalStorage, removeLocalStorage } from "../helpers/local-storage"
 import { Link } from "react-router-dom"
 
 function Sidebar() {
-  let user = JSON.parse(getLocalStorage("user"))
-  let initials = user.fullName.split(" ").map((item) => item[0]).join("")
+  const user = JSON.parse(getLocalStorage("user")) || {};
+  const initials = user.fullName 
+    ? user.fullName.split(" ").map((item) => item[0]).join("") 
+    : "";
+
   function logout() {
-    removeLocalStorage("user")
-    redirectAlert("Cerrando Sesion", "Será redireccionado al login", "/login", "info")
+    removeLocalStorage("user");
+    removeLocalStorage("token");
+    redirectAlert("Cerrando Sesion", "Será redireccionado al login", "/login", "info");
   }
   return (
     (
