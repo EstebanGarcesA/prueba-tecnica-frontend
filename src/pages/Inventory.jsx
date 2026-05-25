@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { end_points } from "../services/api";
 import { Link } from "react-router-dom";
+import { confirmAlert, generalAlert } from "../helpers/alerts";
 
 function isImageUrl(imagen) {
   return typeof imagen === "string" && /^https?:\/\//i.test(imagen.trim());
@@ -65,12 +66,33 @@ function Inventory() {
   }, []);
 
   function deleteProducts(id) {
-    fetch(end_points.productos + "/" + id, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then(() => getProducts())
-      .catch((error) => console.log(error));
+    confirmAlert(
+      "¿Estás seguro?",
+      "¡No podrás revertir esta acción!",
+      "warning",
+      () => {
+        fetch(end_points.productos + "/" + id, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then(() => {
+            getProducts();
+            generalAlert(
+              "¡Eliminado!",
+              "El producto ha sido eliminado correctamente.",
+              "success"
+            );
+          })
+          .catch((error) => {
+            console.error("Error al eliminar el producto:", error);
+            generalAlert(
+              "Error",
+              "Hubo un problema al intentar eliminar el producto.",
+              "error"
+            );
+          });
+      }
+    );
   }
 
   return (
