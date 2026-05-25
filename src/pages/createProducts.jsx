@@ -8,6 +8,7 @@ function getMinId(products) {
 
   const maxId = Math.max(
     ...products.map((item) => Number(item.id)).filter((n) => !Number.isNaN(n)),
+    
   );
 
   return maxId + 1;

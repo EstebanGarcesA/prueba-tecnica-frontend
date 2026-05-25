@@ -7,6 +7,7 @@ import Inventory from "../pages/Inventory";
 import CreateProducts from "../pages/CreateProducts";
 import EditProducts from "../pages/EditProducts";
 import ProtectedRoute from "../pages/ProtectedRoute";
+import { Navigate } from "react-router-dom";
 
 export let routerApp = [
   {
@@ -25,6 +26,10 @@ export let routerApp = [
     path: "/dashboard/",
     element: <ProtectedRoute componente={<Dashboard />} />,
     children: [
+      {
+        path: "",
+        element: <Navigate to="board/" replace />,
+      },
       {
         path: "board/",
         element: <Board />,
