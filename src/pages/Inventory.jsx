@@ -1,8 +1,12 @@
-import React from 'react'
+import Siderbar from "../components/Siderbar"
 
 function Inventory() {
   return (
-    <div>Inventory</div>
+    <div>
+
+      <Siderbar/>
+
+    </div>
   )
 }
 
