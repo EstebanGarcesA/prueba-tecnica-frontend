@@ -2,11 +2,59 @@ import { useState, useEffect } from "react";
 import { end_points } from "../services/api";
 import { Link } from "react-router-dom";
 
+function isImageUrl(imagen) {
+  return typeof imagen === "string" && /^https?:\/\//i.test(imagen.trim());
+}
+
+function formatPrice(precio) {
+  const value = Number(precio);
+  if (Number.isNaN(value)) return precio;
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "USD",
+  }).format(value);
+}
+
+function formatStock(stock) {
+  const value = Number(stock);
+  if (Number.isNaN(value)) return stock;
+  return new Intl.NumberFormat("es-CO").format(value);
+}
+
+function ProductImage({ nombre, imagen }) {
+  if (isImageUrl(imagen)) {
+    return (
+      <img
+        src={imagen}
+        alt={nombre}
+        className="h-full w-full object-cover"
+      />
+    );
+  }
+
+  return (
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-slate-100 text-slate-400">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-10 w-10 opacity-60"
+        aria-hidden="true"
+      >
+        <path d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm0 1.5h15a1.5 1.5 0 0 1 1.5 1.5v10.5a1.5 1.5 0 0 1-1.5 1.5h-15a1.5 1.5 0 0 1-1.5-1.5V6.75a1.5 1.5 0 0 1 1.5-1.5Zm3 3.75a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0Zm8.25 0a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM6 15.75l3-3 2.25 2.25L15 12l3 3H6Z" />
+      </svg>
+      <span className="px-3 text-center text-xs font-medium">
+        {imagen || "Sin imagen"}
+      </span>
+    </div>
+  );
+}
+
 function Inventory() {
   const [products, setProducts] = useState([]);
 
   function getProducts() {
-    fetch(end_points.products)
+    fetch(end_points.productos)
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.log(error));
@@ -21,109 +69,96 @@ function Inventory() {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        getProducs();
-      });
+      .then(() => getProducts())
+      .catch((error) => console.log(error));
   }
 
-  console.log(products);
   return (
     <section className="mt-6">
       <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm font-semibold text-slate-900">Ofertas</p>
+          <p className="text-sm font-semibold text-slate-900">Inventario</p>
           <p className="mt-1 text-sm text-slate-600">
-            Administra vacantes y revisa su información principal.
+            Administra productos y revisa su información principal.
           </p>
         </div>
         <Link
           to="../create-offer/"
           className="inline-flex items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
         >
-          Crear oferta
+          Crear producto
         </Link>
       </header>
 
       {products.length <= 0 ? (
         <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm">
-          No hay ofertas disponibles
+          No hay productos disponibles
         </div>
       ) : (
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((item) => (
             <article
               key={item.id}
-              className="flex min-h-55 flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+              className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <p className="truncate text-base font-semibold text-slate-900">
-                    {item.title}
-                  </p>
-                  <p className="mt-1 truncate text-sm text-slate-600">
-                    {item.company} · {item.location}
-                  </p>
-                </div>
-                <span className="shrink-0 rounded-full bg-blue-600/10 px-3 py-1 text-xs font-medium text-blue-800 ring-1 ring-blue-700/10">
-                  {item.status ?? "open"}
+              <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200">
+                <ProductImage nombre={item.nombre} imagen={item.imagen} />
+                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-blue-800 ring-1 ring-blue-700/10 backdrop-blur-sm">
+                  {item.categoria}
                 </span>
               </div>
 
-              <div className="mt-4 grid gap-2 text-sm text-slate-700">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-500">Senioridad</span>
-                  <span className="font-medium text-slate-900">
-                    {item.seniority}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-500">Modalidad</span>
-                  <span className="font-medium text-slate-900">
-                    {item.modality}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-500">Fecha</span>
-                  <span className="font-medium text-slate-900">
-                    {item.postedAt}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-slate-500">Rango</span>
-                  <span className="font-medium text-slate-900">
-                    {item.currency ?? "USD"} {item.salaryMin ?? "—"} -{" "}
-                    {item.salaryMax ?? "—"}
-                  </span>
-                </div>
-              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="line-clamp-2 text-base font-semibold text-slate-900">
+                  {item.nombre}
+                </h3>
 
-              <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-3">
-                <span className="text-xs text-slate-500">ID: {item.id}</span>
+                <p className="mt-2 text-xl font-bold text-blue-800">
+                  {formatPrice(item.precio)}
+                </p>
 
-                <div className="flex items-center gap-2">
-                  <Link
-                    to={`../edit-offer/${item.id}/`}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-800"
-                    aria-label="Editar"
-                  >
-                    <i className="fa-solid fa-pen-to-square"></i>
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => deleteProducts(item.id)}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-red-700"
-                    aria-label="Eliminar"
-                  >
-                    <i className="fa-solid fa-delete-left"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                    aria-label="Ver"
-                  >
-                    <i className="fa-solid fa-eye"></i>
-                  </button>
+                <div className="mt-4 grid gap-2 text-sm text-slate-700">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-slate-500">Stock</span>
+                    <span className="font-medium text-slate-900">
+                      {formatStock(item.stock)} unidades
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-slate-500">Categoría</span>
+                    <span className="font-medium text-slate-900">
+                      {item.categoria}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-3">
+                  <span className="text-xs text-slate-500">ID: {item.id}</span>
+
+                  <div className="flex items-center gap-2">
+                    <Link
+                      to={`../edit-offer/${item.id}/`}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-blue-800"
+                      aria-label="Editar producto"
+                    >
+                      <i className="fa-solid fa-pen-to-square"></i>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => deleteProducts(item.id)}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-red-700"
+                      aria-label="Eliminar producto"
+                    >
+                      <i className="fa-solid fa-delete-left"></i>
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      aria-label="Ver producto"
+                    >
+                      <i className="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
@@ -133,4 +168,5 @@ function Inventory() {
     </section>
   );
 }
+
 export default Inventory;
