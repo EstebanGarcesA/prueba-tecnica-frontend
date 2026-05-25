@@ -4,7 +4,7 @@ import Register from "../pages/Register";
 import Board from "../pages/Board";
 import Dashboard from "../pages/Dashboard";
 import Inventory from "../pages/Inventory";
-import CreateProducts from "../pages/createProducts";
+import CreateProducts from "../pages/CreateProducts";
 import EditProducts from "../pages/EditProducts";
 import ProtectedRoute from "../pages/ProtectedRoute";
 
