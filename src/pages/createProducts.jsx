@@ -103,7 +103,7 @@ function CreateProducts() {
           </div>
           <Link
             to="../inventory/"
-            className="text-sm font-medium text-blue-700 hover:underline"
+            className="text-sm font-bold text-orange-600 hover:text-orange-500 hover:underline transition"
           >
             Volver al inventario
           </Link>
@@ -122,7 +122,7 @@ function CreateProducts() {
               min={minId}
               required
               onChange={(e) => setNextId(e.target.value)}
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
             <p className="text-xs text-slate-500">
               Siguiente ID disponible: {minId} ({products.length} productos en
@@ -139,7 +139,7 @@ function CreateProducts() {
               name="nombre"
               required
               placeholder="Intelligent Rubber Table"
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
           </div>
 
@@ -152,7 +152,7 @@ function CreateProducts() {
               name="categoria"
               required
               placeholder="Industrial"
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
           </div>
           <div className="grid gap-2">
@@ -163,7 +163,7 @@ function CreateProducts() {
               type="text"
               name="imagen"
               placeholder="https://ejemplo.com/imagen.jpg"
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
           </div>
 
@@ -176,7 +176,7 @@ function CreateProducts() {
               name="precio"
               required
               placeholder="5500"
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
           </div>
           <div className="grid gap-2">
@@ -188,20 +188,20 @@ function CreateProducts() {
               name="stock"
               required
               placeholder="500"
-              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none ring-blue-700/20 focus:ring-2"
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
             />
           </div>
 
           <div className="flex flex-wrap items-center justify-end gap-2 pt-2 md:col-span-2">
             <Link
               to="../inventory/"
-              className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-blue-800 hover:bg-slate-50"
+              className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-slate-800 transition"
             >
               Cancelar
             </Link>
             <button
               type="submit"
-              className="rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+              className="rounded-lg bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 hover:from-red-500 hover:via-orange-400 hover:to-amber-400 px-4 py-2 text-sm font-bold text-white transition hover:shadow-lg hover:shadow-orange-500/15 cursor-pointer"
             >
               Crear producto
             </button>

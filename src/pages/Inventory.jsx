@@ -106,7 +106,7 @@ function Inventory() {
         </div>
         <Link
           to="../create-offer/"
-          className="inline-flex items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-800"
+          className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 hover:from-red-500 hover:via-orange-400 hover:to-amber-400 px-4 py-2 text-sm font-bold text-white transition hover:shadow-lg hover:shadow-orange-500/15"
         >
           Crear producto
         </Link>
@@ -125,7 +125,7 @@ function Inventory() {
             >
               <div className="relative aspect-[4/3] overflow-hidden border-b-2 border-slate-300">
                 <ProductImage nombre={item.nombre} imagen={item.imagen} />
-                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-blue-800 ring-1 ring-blue-700/10 backdrop-blur-sm">
+                <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-orange-700 ring-1 ring-orange-500/25 backdrop-blur-sm shadow-sm">
                   {item.categoria}
                 </span>
               </div>
@@ -135,7 +135,7 @@ function Inventory() {
                   {item.nombre}
                 </h3>
 
-                <p className="mt-2 text-xl font-bold text-blue-800">
+                <p className="mt-2 text-xl font-extrabold text-orange-600">
                   {formatPrice(item.precio)}
                 </p>
 
@@ -160,7 +160,7 @@ function Inventory() {
                   <div className="flex items-center gap-2">
                     <Link
                       to={`../edit-offer/${item.id}/`}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border-2 border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-blue-800"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border-2 border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-orange-600 hover:border-orange-200 transition"
                       aria-label="Editar producto"
                     >
                       <i className="fa-solid fa-pen-to-square"></i>
@@ -168,7 +168,7 @@ function Inventory() {
                     <button
                       type="button"
                       onClick={() => deleteProducts(item.id)}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border-2 border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-red-700"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border-2 border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-red-600 hover:border-red-200 transition"
                       aria-label="Eliminar producto"
                     >
                       <i className="fa-solid fa-delete-left"></i>

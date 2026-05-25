@@ -87,33 +87,51 @@ const Login = () => {
 
   return (
     <div className="form-login-container">
-      <div className="max-w-lg w-full">
+      {/* Contenedor central flotante con efectos de profundidad */}
+      <div className="max-w-md w-full px-4 z-10">
         <div
           style={{
-            boxShadow:
-              "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(249, 115, 22, 0.04)",
           }}
-          className="bg-gray-800 rounded-lg shadow-xl overflow-hidden"
+          className="bg-slate-900/90 backdrop-blur-xl border border-slate-800/80 rounded-2xl overflow-hidden transform transition duration-500 hover:scale-[1.01]"
         >
           <div className="p-8">
-            <h2 className="text-center text-3xl font-extrabold text-white">
-              Administración de inventario
+            {/* Icono corporativo llamativo en degradado cálido */}
+            <div className="flex justify-center mb-6">
+              <div className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-tr from-red-600 via-orange-500 to-amber-500 shadow-lg shadow-orange-500/20 ring-4 ring-orange-500/10">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="h-8 w-8 text-white animate-pulse"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.008 1.24l.885 1.77a2.25 2.25 0 0 0 2.007 1.24h1.98a2.25 2.25 0 0 0 2.007-1.24l.885-1.77a2.25 2.25 0 0 1 2.007-1.24h3.86m-18 0h18a2.25 2.25 0 0 1 2.25 2.25v4.5A2.25 2.25 0 0 1 19.5 21.75h-15a2.25 2.25 0 0 1-2.25-2.25v-4.5a2.25 2.25 0 0 1 2.25-2.25Zm0-4.5h18a2.25 2.25 0 0 0 2.25-2.25V3.75A2.25 2.25 0 0 0 19.5 1.5h-15a2.25 2.25 0 0 0-2.25 2.25v4.5A2.25 2.25 0 0 0 4.5 9Zm0 0h18"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <h2 className="text-center text-2xl font-bold tracking-tight text-white">
+              Administración de Inventario
             </h2>
-            <p className="mt-4 text-center text-gray-400">
-              Inicia sesión para continuar
+            <p className="mt-2 text-center text-sm text-slate-400">
+              Inicia sesión para continuar al panel de control
             </p>
-            <form
-              onSubmit={signIn}
-              className="mt-8 space-y-6"
-            >
-              <div className="rounded-md shadow-sm">
+
+            <form onSubmit={signIn} className="mt-8 space-y-5">
+              <div className="space-y-4 rounded-md">
                 <div>
                   <label className="sr-only" htmlFor="email">
                     Email
                   </label>
                   <input
-                    placeholder="Email"
-                    className="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    placeholder="Email corporativo"
+                    className="appearance-none block w-full px-4 py-3 border border-slate-700 bg-slate-800/80 text-white rounded-xl placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition sm:text-sm"
                     required
                     autoComplete="email"
                     type="email"
@@ -123,13 +141,13 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="mt-4">
+                <div>
                   <label className="sr-only" htmlFor="password">
                     Contraseña
                   </label>
                   <input
                     placeholder="Contraseña"
-                    className="appearance-none relative block w-full px-3 py-3 border border-gray-700 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none block w-full px-4 py-3 border border-slate-700 bg-slate-800/80 text-white rounded-xl placeholder-slate-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition sm:text-sm"
                     required
                     autoComplete="current-password"
                     type="password"
@@ -140,10 +158,11 @@ const Login = () => {
                   />
                 </div>
               </div>
+
               <div className="flex items-center justify-between mt-4">
                 <div className="flex items-center">
                   <input
-                    className="h-4 w-4 text-indigo-500 focus:ring-indigo-400 border-gray-600 rounded"
+                    className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-slate-700 bg-slate-800 rounded transition cursor-pointer"
                     type="checkbox"
                     name="remember-me"
                     id="remember-me"
@@ -151,16 +170,17 @@ const Login = () => {
                     onChange={(e) => setRemember(e.target.checked)}
                   />
                   <label
-                    className="ml-2 block text-sm text-gray-400"
+                    className="ml-2 block text-sm text-slate-400 cursor-pointer select-none"
                     htmlFor="remember-me"
                   >
                     Recordarme
                   </label>
                 </div>
               </div>
+
               <div>
                 <button
-                  className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-gray-900 bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 hover:from-red-500 hover:via-orange-400 hover:to-amber-400 hover:shadow-lg hover:shadow-orange-500/20 transform hover:-translate-y-0.5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-orange-500 cursor-pointer"
                   type="submit"
                   id="login"
                   name="login"
@@ -170,10 +190,10 @@ const Login = () => {
               </div>
             </form>
           </div>
-          <div className="px-8 py-4 bg-gray-700 text-center">
-            <span className="text-gray-400">¿No tienes una cuenta? </span>
+          <div className="px-8 py-5 bg-slate-950/40 border-t border-slate-800/80 text-center">
+            <span className="text-sm text-slate-400">¿No tienes una cuenta? </span>
             <Link
-              className="font-medium text-indigo-500 hover:text-indigo-400"
+              className="text-sm font-semibold text-amber-400 hover:text-amber-300 transition"
               to="/register"
             >
               Registrarse

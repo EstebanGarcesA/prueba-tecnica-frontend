@@ -23,7 +23,7 @@ const Board = () => {
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold">Tablero</p>
-            <span className="rounded-full bg-blue-600/10 px-3 py-1 text-xs font-medium text-blue-800">
+            <span className="rounded-full bg-orange-600/10 px-3 py-1 text-xs font-semibold text-orange-800">
               Estado
             </span>
           </div>
@@ -51,7 +51,7 @@ const Board = () => {
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold">Ofertas con más postulantes</p>
-            <span className="rounded-full bg-blue-600/10 px-3 py-1 text-xs font-medium text-blue-800">
+            <span className="rounded-full bg-amber-600/10 px-3 py-1 text-xs font-semibold text-amber-800">
               Top
             </span>
           </div>
@@ -66,7 +66,7 @@ const Board = () => {
                 <div className="col-span-8 font-medium text-slate-900">
                   Product Manager
                 </div>
-                <div className="col-span-4 text-right font-semibold text-blue-900">
+                <div className="col-span-4 text-right font-bold text-orange-600">
                   34
                 </div>
               </div>
@@ -74,7 +74,7 @@ const Board = () => {
                 <div className="col-span-8 font-medium text-slate-900">
                   Frontend
                 </div>
-                <div className="col-span-4 text-right font-semibold text-blue-900">
+                <div className="col-span-4 text-right font-bold text-orange-600">
                   21
                 </div>
               </div>
@@ -82,7 +82,7 @@ const Board = () => {
                 <div className="col-span-8 font-medium text-slate-900">
                   Data Analyst
                 </div>
-                <div className="col-span-4 text-right font-semibold text-blue-900">
+                <div className="col-span-4 text-right font-bold text-orange-600">
                   17
                 </div>
               </div>
